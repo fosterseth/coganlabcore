@@ -112,11 +112,23 @@ plot_elec_density({'D24', 'D28'}, 15, 'fsaverage', cfg);
 % if this causes 0 value to no longer be grey use
 %    >> set_caxis_color(0, [.5 .5 .5]);
 
+%% Plot subset of annotation labels
+cfg = [];
+cfg.show_annot = 1;
+cfg.annot_index = [25 31]; % label indices
+% Get label indices by first producing a plot with all labels
+% (cfg.annot_index = []). The legend shows index values for each label.
+cfg.alpha = 1;
+plot_subj('D14', cfg);
+
+cfg.annot_label_fn = 'h.aparc.a2009s.annot'; % cfg.hemisphere is automatically prepended. In case of cfg.hemisphere = 'b', '.mat' is appended.
+plot_subj('D14', cfg);
+
 %% Tips
 % Each function also outputs the handles to the surface (patch), the
-% electrodes (scatter3), and the labels(text).
-% Therefore, if you want to further customize the plots, you can do so
-% directly by accessing the property attributes in the handle.
+% electrodes (scatter3), and the labels(text). Therefore, if you want to
+% further customize the plots, you can do so directly by accessing the
+% property attributes in the handle.
 handles = plot_subj('D14');
 handles.surf
 handles.elec
