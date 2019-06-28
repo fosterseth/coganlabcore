@@ -9,13 +9,13 @@ if nargout > 1
 
     total_bytes = h.records * sum(h.samples) * 2;
 
-    alldatao = fread(fid, [total_bytes 1], 'int16=>int16');
+    alldata = fread(fid, [total_bytes 1], 'int16=>int16');
 
     fclose(fid);
     
-    alldatao = double(alldatao);
+    alldata = double(alldata);
 
-    alldata = reshape(alldatao, sum(h.samples), h.records);
+    alldata = reshape(alldata, sum(h.samples), h.records);
 
     alldata = mat2cell(alldata, h.samples, h.records);
 
